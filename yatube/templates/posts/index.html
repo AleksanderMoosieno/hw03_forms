@@ -13,7 +13,7 @@
      <p>{{ post.text }}</p>
   {% if post.group is not None %}
   <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
-  {%endif%}
+  {% endif %}
 {% if not forloop.last %}<hr>{% endif %}
 {% endfor %}
 {% include 'posts/includes/paginator.html' %}
