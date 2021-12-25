@@ -13,8 +13,7 @@
           <div class="col-md-8 p-5">
             <div class="card">
               <div class="card-header">
-              <form method="post"
-               action="{% url 'posts:post_create' %}">
+               <form method="post" action="{% url 'posts:post_create' %}">
                     {% if is_edit %}
                     Редактировать пост
                     {% else %}
@@ -25,7 +24,7 @@
                 {% include 'includes/form.html' %}
                 <div class="col-md-6 offset-md-4">
                   <button type="submit" class="btn btn-primary" >
-                  <form method="post" action="{% url 'posts:post_create' %}">
+                  <action="{% url 'posts:post_create' %}">
                     {% if is_edit %}
                       Добавить 
                     {% else %}
