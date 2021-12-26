@@ -2,6 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 
 from .models import Group, Post, User
@@ -9,7 +10,7 @@ from .forms import PostForm
 
 
 def get_page_context(post_list, request):
-    paginator = Paginator(post_list, 10)
+    paginator = Paginator(post_list, settings.CONST)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return page_obj
@@ -53,13 +54,12 @@ def post_detail(request, post_id):
 
 @login_required
 def post_create(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST or None)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            form.save()
-            return redirect('posts:profile', request.user)
+    form = PostForm(request.POST or None)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        form.save()
+        return redirect('posts:profile', request.user)
         return render(request, 'posts/create_post.html', {'form': form})
     form = PostForm()
     return render(request, 'posts/create_post.html', {'form': form})
@@ -68,11 +68,9 @@ def post_create(request):
 @login_required
 def post_edit(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    if request.method == 'POST':
-        form = PostForm(request.POST or None, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
+    form = PostForm(request.POST or None, instance=post)
+    if form.is_valid():
+        post.save()
         return redirect('posts:post_detail', post.pk,)
     is_edit = True
     form = PostForm(instance=post)
