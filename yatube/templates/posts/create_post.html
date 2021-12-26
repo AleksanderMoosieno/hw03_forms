@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-{% if is_edit %}
-Редактировать пост
-{% else %}
-Новый пост
-{% endif %}
+{% if is_edit %} 
+Редактировать пост 
+{% else %} 
+Новый пост 
+{% endif %} 
 {% endblock %}
 {% block content %}
       <div class="container py-5">
         <div class="row justify-content-center">
           <div class="col-md-8 p-5">
             <div class="card">
-              <div class="card-header">
-               <form method="post" action="{% url 'posts:post_create' %}">
+              <div class="card-header"> 
+                <form method="post"> 
+                  <form action="{% url 'posts:post_create' %}">
                     {% if is_edit %}
                     Редактировать пост
                     {% else %}
@@ -23,14 +24,14 @@
               <div class="card-body"> 
                 {% include 'includes/form.html' %}
                 <div class="col-md-6 offset-md-4">
-                  <button type="submit" class="btn btn-primary" >
-                  <action="{% url 'posts:post_create' %}">
-                    {% if is_edit %}
-                      Добавить 
-                    {% else %}
-                      Сохранить
-                    {% endif %} 
-                 </button>
+                  <button type="submit" class="btn btn-primary" 
+                    <form action="{% url 'posts:post_create' %}">
+                      {% if is_edit %}
+                        Сохранить 
+                      {% else %}
+                        Добавить
+                      {% endif %} 
+                  </button>
                 </div>
               </div>
             </div>
