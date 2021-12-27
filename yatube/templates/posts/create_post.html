@@ -14,26 +14,26 @@
             <div class="card">
               <div class="card-header"> 
                 <form method="post"> 
-                  <form action="{% url 'posts:post_create' %}">
+                  <action="{% url 'posts:post_create' %}">
                     {% if is_edit %}
                     Редактировать пост
                     {% else %}
                     Новый пост
                     {% endif %}             
-              </div>
-              <div class="card-body"> 
+                <div class="card-body"> 
                 {% include 'includes/form.html' %}
                 <div class="col-md-6 offset-md-4">
-                  <button type="submit" class="btn btn-primary" 
-                    <form action="{% url 'posts:post_create' %}">
+                <button type="submit" class="btn btn-primary" 
+                <action="{% url 'posts:post_create' %}">
                       {% if is_edit %}
                         Сохранить 
                       {% else %}
                         Добавить
-                      {% endif %} 
-                  </button>
+                      {% endif %}
+                </button>
                 </div>
               </div>
+                </form>
             </div>
           </div>
         </div>
